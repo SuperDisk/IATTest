@@ -115,7 +115,7 @@ view model =
                     , Html.text "Strong automatic preference for Black people over White pepole"
                     , br [] []
 
-                    , input [onInput GotText, type_ "text", name "email", placeholder "Email"] []
+                    , input [onInput GotText, type_ "text", name "usermail", placeholder "Email"] []
                     , Html.br [] []
                     , input [type_ "submit", disabled <| not (model.unlocked && model.textFilled)] [Html.text "Submit"]
                     ]
