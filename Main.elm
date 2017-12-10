@@ -83,7 +83,7 @@ view model =
                 , Html.text "What was your result on the IAT?"
                 , Html.form [action "https://formspree.io/yux60000@gmail.com", method "POST"]
                     [ input [ type_ "radio", name "result", value "1", onClick UnlockButton] [ ]
-                    , Html.text "Strong auotmatic preference for White people over Black pepole"
+                    , Html.text "Strong automatic preference for White people over Black pepole"
                     , br [] []
 
                     , input [ type_ "radio", name "result", value "2", onClick UnlockButton ] [ ]
