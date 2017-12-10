@@ -88,15 +88,15 @@ view model =
                 , Html.text "What was your result on the IAT?"
                 , Html.form [action "https://formspree.io/yux60000@gmail.com", method "POST"]
                     [ input [ type_ "radio", name "result", value "1", onClick UnlockButton] [ ]
-                    , Html.text "Strong automatic preference for White people over Black pepole"
+                    , Html.text "Strong automatic preference for White people over Black people"
                     , br [] []
 
                     , input [ type_ "radio", name "result", value "2", onClick UnlockButton ] [ ]
-                    , Html.text "Moderate automatic preference for White people over Black pepole"
+                    , Html.text "Moderate automatic preference for White people over Black people"
                     , br [] []
 
                     , input [ type_ "radio", name "result", value "3", onClick UnlockButton ] [ ]
-                    , Html.text "Slight automatic preference for White people over Black pepole"
+                    , Html.text "Slight automatic preference for White people over Black people"
                     , br [] []
 
                     , input [ type_ "radio", name "result", value "4", onClick UnlockButton ] [ ]
@@ -104,15 +104,15 @@ view model =
                     , br [] []
 
                     , input [ type_ "radio", name "result", value "5", onClick UnlockButton ] [ ]
-                    , Html.text "Slight automatic preference for Black people over White pepole"
+                    , Html.text "Slight automatic preference for Black people over White people"
                     , br [] []
 
                     , input [ type_ "radio", name "result", value "6", onClick UnlockButton ] [ ]
-                    , Html.text "Moderate automatic preference for Black people over White pepole"
+                    , Html.text "Moderate automatic preference for Black people over White people"
                     , br [] []
 
                     , input [ type_ "radio", name "result", value "7", onClick UnlockButton ] [ ]
-                    , Html.text "Strong automatic preference for Black people over White pepole"
+                    , Html.text "Strong automatic preference for Black people over White people"
                     , br [] []
 
                     , input [onInput GotText, type_ "text", name "usermail", placeholder "Email"] []
