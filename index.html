@@ -9108,26 +9108,41 @@ var _user$project$Main$introText = _elm_lang$html$Html$text('\nHello! This is an
 var _user$project$Main$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
-		if (_p0.ctor === 'GotRandom') {
-			return A2(
-				_elm_lang$core$Platform_Cmd_ops['!'],
-				_elm_lang$core$Native_Utils.update(
-					model,
-					{flipped: _p0._0}),
-				{ctor: '[]'});
-		} else {
-			return A2(
-				_elm_lang$core$Platform_Cmd_ops['!'],
-				_elm_lang$core$Native_Utils.update(
-					model,
-					{unlocked: true}),
-				{ctor: '[]'});
+		switch (_p0.ctor) {
+			case 'GotRandom':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{flipped: _p0._0}),
+					{ctor: '[]'});
+			case 'UnlockButton':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{unlocked: true}),
+					{ctor: '[]'});
+			default:
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							textFilled: _elm_lang$core$Native_Utils.cmp(
+								_elm_lang$core$String$length(_p0._0),
+								0) > 0
+						}),
+					{ctor: '[]'});
 		}
 	});
-var _user$project$Main$Model = F2(
-	function (a, b) {
-		return {flipped: a, unlocked: b};
+var _user$project$Main$Model = F3(
+	function (a, b, c) {
+		return {flipped: a, unlocked: b, textFilled: c};
 	});
+var _user$project$Main$GotText = function (a) {
+	return {ctor: 'GotText', _0: a};
+};
 var _user$project$Main$UnlockButton = {ctor: 'UnlockButton'};
 var _user$project$Main$view = function (model) {
 	var survey = A2(
@@ -9440,19 +9455,49 @@ var _user$project$Main$view = function (model) {
 																																	_elm_lang$html$Html$input,
 																																	{
 																																		ctor: '::',
-																																		_0: _elm_lang$html$Html_Attributes$type_('submit'),
+																																		_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$GotText),
 																																		_1: {
 																																			ctor: '::',
-																																			_0: _elm_lang$html$Html_Attributes$disabled(!model.unlocked),
-																																			_1: {ctor: '[]'}
+																																			_0: _elm_lang$html$Html_Attributes$type_('text'),
+																																			_1: {
+																																				ctor: '::',
+																																				_0: _elm_lang$html$Html_Attributes$name('email'),
+																																				_1: {
+																																					ctor: '::',
+																																					_0: _elm_lang$html$Html_Attributes$placeholder('Email'),
+																																					_1: {ctor: '[]'}
+																																				}
+																																			}
 																																		}
 																																	},
-																																	{
+																																	{ctor: '[]'}),
+																																_1: {
+																																	ctor: '::',
+																																	_0: A2(
+																																		_elm_lang$html$Html$br,
+																																		{ctor: '[]'},
+																																		{ctor: '[]'}),
+																																	_1: {
 																																		ctor: '::',
-																																		_0: _elm_lang$html$Html$text('Submit'),
+																																		_0: A2(
+																																			_elm_lang$html$Html$input,
+																																			{
+																																				ctor: '::',
+																																				_0: _elm_lang$html$Html_Attributes$type_('submit'),
+																																				_1: {
+																																					ctor: '::',
+																																					_0: _elm_lang$html$Html_Attributes$disabled(!(model.unlocked && model.textFilled)),
+																																					_1: {ctor: '[]'}
+																																				}
+																																			},
+																																			{
+																																				ctor: '::',
+																																				_0: _elm_lang$html$Html$text('Submit'),
+																																				_1: {ctor: '[]'}
+																																			}),
 																																		_1: {ctor: '[]'}
-																																	}),
-																																_1: {ctor: '[]'}
+																																	}
+																																}
 																															}
 																														}
 																													}
@@ -9502,7 +9547,7 @@ var _user$project$Main$main = _elm_lang$html$Html$program(
 	{
 		init: {
 			ctor: '_Tuple2',
-			_0: A2(_user$project$Main$Model, false, false),
+			_0: A3(_user$project$Main$Model, false, false, false),
 			_1: A2(_elm_lang$core$Random$generate, _user$project$Main$GotRandom, _elm_lang$core$Random$bool)
 		},
 		view: _user$project$Main$view,

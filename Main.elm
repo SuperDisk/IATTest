@@ -9,12 +9,14 @@ import Random
 type alias Model =
     { flipped : Bool
     , unlocked: Bool
+    , textFilled: Bool
     }
 
 
 type Msg
     = GotRandom Bool
     | UnlockButton
+    | GotText String
 
 update msg model =
     case msg of
@@ -24,10 +26,13 @@ update msg model =
         UnlockButton -> 
             {model | unlocked = True} ! []
 
+        GotText s ->
+            {model | textFilled = String.length s > 0} ! []
+
 main : Program Never Model Msg
 main =
     Html.program
-        { init = ( (Model False False), (Random.generate GotRandom Random.bool) )
+        { init = ( (Model False False False), (Random.generate GotRandom Random.bool) )
         , view = view
         , update = update
         , subscriptions = (\_ -> Sub.none)
@@ -110,7 +115,9 @@ view model =
                     , Html.text "Strong automatic preference for Black people over White pepole"
                     , br [] []
 
-                    , input [type_ "submit", disabled <| not model.unlocked] [Html.text "Submit"]
+                    , input [onInput GotText, type_ "text", name "email", placeholder "Email"] []
+                    , Html.br [] []
+                    , input [type_ "submit", disabled <| not (model.unlocked && model.textFilled)] [Html.text "Submit"]
                     ]
                     , Html.br [] []
                     , Html.text "Thank you for completing this experiment!"
