@@ -51,7 +51,7 @@ it is designed to measure implicit bias.
 testInstructions =
     Html.span []
         [ Html.a [ target "_blank", href "https://implicit.harvard.edu/implicit/selectatest.html" ] [ Html.text "Take the Race IAT " ]
-        , Html.text "(Labeled Race ('Black - White' IAT) on the IAT website.) and enter your result in the form below."
+        , Html.text "(Labeled Race ('Black - White' IAT) on the IAT website.) and enter your result in the form below. You will have to click through some screens of garbage to get to the list of tests you can take."
         ]
 
 
